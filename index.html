@@ -1,0 +1,1650 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#131413">
+<meta name="description" content="PULSO. Entrenamiento personal con dirección. Fuerza, resistencia y movimiento adaptados a ti.">
+<title>PULSO. — Personal Training</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&family=Space+Mono&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#131413;
+  --coal:#1d1f1c;
+  --paper:#f0eee7;
+  --orange:#f15c39;
+  --orange2:#ff7952;
+  --grey:#a4a7a0;
+  --line:rgba(255,255,255,.16);
+  --max:1380px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--paper);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button,a,input,textarea,select{
+  -webkit-tap-highlight-color:transparent;
+}
+:focus-visible{
+  outline:3px solid var(--orange);
+  outline-offset:4px;
+}
+img{display:block;width:100%}
+button{border:0}
+::selection{background:var(--orange);color:white}
+.container{
+  width:min(calc(100% - 58px),var(--max));
+  margin:auto;
+}
+section{position:relative}
+.condensed{font-family:"Barlow Condensed",sans-serif}
+.mono{font-family:"Space Mono",monospace}
+.kicker{
+  font:11px "Space Mono",monospace;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.display{
+  font:800 clamp(70px,10vw,157px)/.83
+    "Barlow Condensed",sans-serif;
+  letter-spacing:-.012em;
+  margin:0;
+  text-transform:uppercase;
+}
+.display em{
+  color:var(--orange);
+  font-style:normal;
+}
+.section-space{padding:125px 0}
+.muted{
+  color:var(--grey);
+  line-height:1.85;
+}
+.btn{
+  min-height:57px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:35px;
+  padding:0 26px;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.025em;
+  transition:transform .25s,background .25s;
+}
+.btn:hover{transform:translateY(-4px)}
+.btn-orange{
+  background:var(--orange);
+  color:var(--black);
+}
+.btn-orange:hover{background:var(--orange2)}
+.btn-light{
+  color:var(--black);
+  background:var(--paper);
+}
+.btn-stroke{
+  border:1px solid rgba(255,255,255,.5);
+  color:white;
+  background:transparent;
+}
+.btn-stroke:hover{background:rgba(255,255,255,.1)}
+.reveal{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.reveal.visible{opacity:1;transform:none}
+
+/* NAV */
+.header{
+  position:fixed;
+  z-index:100;
+  inset:0 0 auto;
+  transition:background .3s;
+}
+.header.scrolled,.header.open{
+  background:rgba(19,20,19,.96);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+  min-height:82px;
+}
+.logo{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  flex-shrink:0;
+}
+.logo-mark{
+  display:grid;
+  place-items:center;
+  width:36px;
+  height:36px;
+  border:3px solid var(--orange);
+  color:var(--orange);
+  border-radius:50%;
+  font-size:21px;
+  font-weight:900;
+}
+.logo strong{
+  font:800 31px/.9 "Barlow Condensed",sans-serif;
+  letter-spacing:.05em;
+}
+.logo .dot{color:var(--orange)}
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:34px;
+}
+.navlinks a{
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.055em;
+}
+.navlinks a:hover{color:var(--orange)}
+.nav-cta{
+  padding:12px 18px;
+  border:1px solid var(--orange);
+  font-size:12px;
+  text-transform:uppercase;
+  font-weight:800;
+}
+.nav-cta:hover{background:var(--orange);color:var(--black)}
+.menu{
+  display:none;
+  width:44px;
+  height:44px;
+  background:var(--coal);
+  color:white;
+  font-size:23px;
+  border:1px solid var(--line);
+}
+
+/* HERO */
+.hero{
+  min-height:830px;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  isolation:isolate;
+  overflow:hidden;
+  background:#1c201e url("https://images.unsplash.com/photo-1534258936925-c58bed479fcb?auto=format&fit=crop&w=2000&q=85") center/cover;
+}
+.hero-video,.hero-overlay{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+.hero-video{
+  z-index:-2;
+  object-fit:cover;
+  object-position:center 42%;
+}
+.hero-overlay{
+  z-index:-1;
+  background:
+    linear-gradient(90deg,rgba(9,12,10,.92),rgba(9,12,10,.58) 56%,rgba(9,12,10,.2)),
+    linear-gradient(0deg,rgba(9,12,10,.65),transparent 40%);
+}
+.hero-content{padding:145px 0 110px}
+.hero h1{
+  font:800 clamp(82px,10.7vw,172px)/.77
+    "Barlow Condensed",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:-.015em;
+  max-width:900px;
+  margin:0;
+}
+.hero h1 span{display:block}
+.hero h1 .stroke{
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--paper);
+}
+.hero h1 .orange{color:var(--orange)}
+.hero-copy{
+  display:flex;
+  align-items:flex-start;
+  gap:32px;
+  margin-top:32px;
+}
+.hero-copy .stripe{
+  width:49px;
+  height:3px;
+  background:var(--orange);
+  margin-top:13px;
+  flex-shrink:0;
+}
+.hero-copy p{
+  max-width:470px;
+  margin:0;
+  font-size:16px;
+  color:#d0d4cf;
+  line-height:1.8;
+}
+.hero-actions{
+  display:flex;
+  gap:12px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+.hero-bottom{
+  position:absolute;
+  bottom:0;
+  left:0;right:0;
+  border-top:1px solid rgba(255,255,255,.2);
+}
+.hero-bottom-inner{
+  min-height:62px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:center;
+  font-size:10px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:#d5d9d4;
+}
+.hero-bottom-inner a{color:var(--orange)}
+
+/* KINETIC STRIP */
+.ticker{
+  overflow:hidden;
+  background:var(--orange);
+  color:var(--black);
+  transform:rotate(-1deg) scale(1.02);
+  margin:8px 0;
+}
+.ticker-track{
+  display:flex;
+  width:max-content;
+  animation:ticker 24s linear infinite;
+}
+.ticker-set{
+  display:flex;
+  gap:42px;
+  align-items:center;
+  padding:15px 21px;
+  white-space:nowrap;
+  font:800 32px "Barlow Condensed",sans-serif;
+  letter-spacing:.06em;
+}
+.ticker-set i{
+  width:10px;height:10px;
+  background:var(--black);
+  transform:rotate(45deg);
+}
+@keyframes ticker{
+  to{transform:translateX(-50%)}
+}
+
+/* MANIFESTO */
+.manifesto{padding:150px 0 140px}
+.manifesto-grid{
+  display:grid;
+  grid-template-columns:1fr 1.7fr;
+  gap:80px;
+}
+.manifesto-aside{
+  align-self:start;
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+}
+.manifesto-aside img{
+  height:450px;
+  object-fit:cover;
+  filter:grayscale(100%);
+  transform:rotate(-3deg);
+}
+.manifesto h2{
+  font:800 clamp(63px,8.3vw,129px)/.85
+    "Barlow Condensed",sans-serif;
+  letter-spacing:-.01em;
+  margin:0 0 40px;
+}
+.manifesto h2 em{
+  font-style:normal;
+  color:var(--orange);
+}
+.manifesto-description{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+  border-top:1px solid var(--line);
+  padding-top:30px;
+}
+.manifesto-description p{
+  margin:0;
+  font-size:14px;
+  line-height:1.9;
+  color:#aeb1ab;
+}
+.manifesto-description p:first-child{
+  color:var(--paper);
+  font-weight:700;
+  font-size:17px;
+}
+
+/* STORY MOSAIC */
+.movement{
+  background:var(--paper);
+  color:var(--black);
+  padding:120px 0;
+}
+.movement-header{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:40px;
+  margin-bottom:70px;
+}
+.movement h2{
+  font:800 clamp(67px,9vw,142px)/.83
+    "Barlow Condensed",sans-serif;
+  margin:17px 0 0;
+}
+.movement h2 em{
+  font-style:normal;
+  color:var(--orange);
+}
+.movement-header p{
+  max-width:370px;
+  margin:0;
+  line-height:1.8;
+  color:#61645e;
+}
+.movement-grid{
+  display:grid;
+  grid-template-columns:1.2fr .75fr 1fr;
+  gap:20px;
+  align-items:start;
+}
+.movement-piece:nth-child(2){margin-top:100px}
+.movement-piece:nth-child(3){margin-top:35px}
+.movement-photo{
+  height:490px;
+  overflow:hidden;
+  background:#333;
+}
+.movement-piece:nth-child(2) .movement-photo{height:350px}
+.movement-piece:nth-child(3) .movement-photo{height:420px}
+.movement-photo img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .75s;
+}
+.movement-piece:hover img{transform:scale(1.06)}
+.movement-caption{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  border-top:2px solid var(--black);
+  padding-top:15px;
+  margin-top:18px;
+}
+.movement-caption h3{
+  font:800 40px/.9 "Barlow Condensed",sans-serif;
+  margin:0;
+}
+.movement-caption span{
+  font:11px "Space Mono",monospace;
+  color:#686b64;
+}
+
+/* PERFORMANCE BREAK */
+.fullshot{
+  min-height:670px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  isolation:isolate;
+}
+.fullshot img{
+  position:absolute;
+  inset:0;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+.fullshot:after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(8,10,8,.87),rgba(8,10,8,.18));
+  z-index:-1;
+}
+.fullshot h2{
+  font:800 clamp(73px,10vw,152px)/.82
+    "Barlow Condensed",sans-serif;
+  max-width:960px;
+  margin:0;
+}
+.fullshot h2 em{
+  font-style:normal;
+  color:var(--orange);
+}
+.fullshot p{
+  max-width:530px;
+  margin-top:35px;
+  color:#ddd;
+  line-height:1.8;
+}
+
+/* INTERACTIVE PLANNER */
+.planner{
+  padding:135px 0;
+  background:#1a1b19;
+}
+.planner-head{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:80px;
+  align-items:end;
+  margin-bottom:60px;
+}
+.planner-head h2{
+  margin:15px 0 0;
+  font:800 clamp(69px,8vw,119px)/.88
+    "Barlow Condensed",sans-serif;
+}
+.planner-head h2 em{
+  font-style:normal;
+  color:var(--orange);
+}
+.planner-head p{
+  max-width:450px;
+  color:#aaa;
+  line-height:1.8;
+}
+.planner-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.planner-tab{
+  flex:1;
+  min-width:150px;
+  padding:23px 12px;
+  background:transparent;
+  color:#868b84;
+  text-transform:uppercase;
+  font:800 25px "Barlow Condensed",sans-serif;
+  letter-spacing:.05em;
+  transition:.2s;
+}
+.planner-tab[aria-pressed="true"]{
+  background:var(--orange);
+  color:#131413;
+}
+.planner-tab:hover:not([aria-pressed="true"]){
+  color:white;
+}
+.plan-layout{
+  display:grid;
+  grid-template-columns:.68fr 1.32fr;
+  gap:50px;
+  padding-top:55px;
+}
+.plan-left .plan-index{
+  font:12px "Space Mono",monospace;
+  color:var(--orange);
+}
+.plan-left h3{
+  margin:12px 0 15px;
+  font:800 clamp(62px,6vw,100px)/.88
+    "Barlow Condensed",sans-serif;
+}
+.plan-left p{
+  color:#b5b8b1;
+  line-height:1.8;
+  max-width:340px;
+}
+.plan-right{
+  background:var(--paper);
+  color:var(--black);
+  padding:35px;
+}
+.plan-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #c7c8c0;
+  padding-bottom:18px;
+  gap:20px;
+}
+.plan-bar strong{
+  font:800 20px "Barlow Condensed",sans-serif;
+}
+.plan-bar span{
+  color:#767871;
+  font:10px "Space Mono",monospace;
+}
+.week-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:30px;
+}
+.week{
+  min-height:155px;
+  padding:15px;
+  background:#e4e3dc;
+  border-top:4px solid var(--orange);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.week small{
+  color:#81817c;
+  font:10px "Space Mono",monospace;
+}
+.week strong{
+  font:800 23px/1.05 "Barlow Condensed",sans-serif;
+}
+.week span{font-size:11px;color:#6b6d65}
+.plan-foot{
+  padding-top:20px;
+  font-size:11px;
+  color:#797b74;
+  line-height:1.7;
+}
+
+/* COACH */
+.coach{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:650px;
+  background:var(--orange);
+  color:var(--black);
+}
+.coach-image{
+  min-height:650px;
+  overflow:hidden;
+}
+.coach-image img{
+  height:100%;
+  object-fit:cover;
+  filter:grayscale(100%);
+}
+.coach-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  padding:clamp(40px,6vw,95px);
+}
+.coach h2{
+  margin:20px 0 30px;
+  font:800 clamp(77px,9vw,145px)/.8
+    "Barlow Condensed",sans-serif;
+}
+.coach p{
+  line-height:1.85;
+  max-width:480px;
+  font-size:16px;
+}
+.coach-rules{
+  margin:30px 0;
+  border-top:1px solid rgba(0,0,0,.25);
+  width:100%;
+}
+.coach-rules div{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:16px 0;
+  border-bottom:1px solid rgba(0,0,0,.25);
+  font-size:14px;
+}
+.coach-rules span{
+  font-family:"Space Mono",monospace;
+  font-size:10px;
+}
+
+/* MODALITIES */
+.modes{padding:130px 0;background:var(--paper);color:var(--black)}
+.modes-top{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:40px;
+  margin-bottom:65px;
+}
+.modes h2{
+  font:800 clamp(72px,9vw,140px)/.82
+    "Barlow Condensed",sans-serif;
+  margin:0;
+}
+.modes-top p{max-width:400px;color:#666;line-height:1.8}
+.mode-list{border-top:2px solid var(--black)}
+.mode-row{
+  display:grid;
+  grid-template-columns:75px 1fr 1fr 55px;
+  gap:25px;
+  align-items:center;
+  padding:29px 5px;
+  border-bottom:1px solid #b9b9b2;
+  transition:background .25s,padding .25s;
+}
+.mode-row:hover{background:#e8e4da;padding-inline:20px}
+.mode-row small{font:11px "Space Mono",monospace;color:#888}
+.mode-row h3{
+  font:800 clamp(35px,4.5vw,65px)/.9
+    "Barlow Condensed",sans-serif;
+  margin:0;
+}
+.mode-row p{
+  margin:0;
+  color:#686a63;
+  font-size:14px;
+  line-height:1.65;
+}
+.mode-row a{
+  width:43px;height:43px;
+  display:grid;
+  place-items:center;
+  background:var(--black);
+  color:white;
+  font-size:19px;
+  transition:background .25s;
+}
+.mode-row a:hover{background:var(--orange)}
+
+/* CONTACT */
+.contact{padding:140px 0;background:var(--black)}
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:90px;
+}
+.contact h2{
+  font:800 clamp(80px,10vw,158px)/.82
+    "Barlow Condensed",sans-serif;
+  margin:22px 0 30px;
+}
+.contact h2 em{font-style:normal;color:var(--orange)}
+.contact-copy p{
+  color:#aeb0a9;
+  max-width:460px;
+  line-height:1.85;
+}
+.contact-terms{
+  margin-top:45px;
+  border-top:1px solid var(--line);
+  padding-top:25px;
+}
+.contact-terms div{
+  padding:11px 0;
+  font-size:13px;
+  color:#d3d7cf;
+}
+.contact-form{
+  background:#232520;
+  border:1px solid var(--line);
+  padding:clamp(25px,4vw,45px);
+}
+.contact-form h3{
+  margin-bottom:30px;
+  font:800 35px "Barlow Condensed",sans-serif;
+}
+.input-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.field{margin-bottom:20px}
+.field label{
+  display:block;
+  margin-bottom:9px;
+  font:10px "Space Mono",monospace;
+  color:#b3b5ae;
+  text-transform:uppercase;
+}
+.field input,.field select,.field textarea{
+  width:100%;
+  padding:15px;
+  border:1px solid #51554c;
+  border-radius:0;
+  outline:0;
+  background:#171915;
+  color:white;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--orange);
+}
+.field textarea{min-height:105px;resize:vertical}
+.contact-form .btn{width:100%}
+.form-hint{
+  color:#9a9d94;
+  font-size:11px;
+  line-height:1.7;
+  margin-top:18px;
+}
+
+/* FOOTER */
+.footer{
+  padding:70px 0 25px;
+  background:#0b0d0a;
+}
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:start;
+  gap:40px;
+  padding-bottom:60px;
+}
+.footer-top p{
+  max-width:380px;
+  color:#8d9188;
+  font-size:13px;
+  line-height:1.75;
+}
+.footer-links{
+  display:flex;
+  gap:28px;
+  flex-wrap:wrap;
+  font-size:12px;
+  text-transform:uppercase;
+}
+.footer-links a:hover{color:var(--orange)}
+.footer-word{
+  font:800 clamp(140px,29vw,440px)/.75
+    "Barlow Condensed",sans-serif;
+  text-align:center;
+  letter-spacing:-.025em;
+  color:#30322c;
+  user-select:none;
+}
+.footer-bottom{
+  border-top:1px solid var(--line);
+  padding-top:25px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#898c85;
+  font-size:11px;
+}
+
+@media(max-width:1100px){
+  .navlinks,.nav-cta{display:none}
+  .menu{display:block}
+  .header.open .navlinks{
+    display:flex;
+    position:absolute;
+    top:82px;
+    left:0;right:0;
+    background:#131413;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:15px 29px;
+    border-bottom:1px solid var(--line);
+  }
+  .header.open .navlinks a{padding:15px 0}
+  .manifesto-grid{gap:45px}
+  .movement-grid{gap:12px}
+  .movement-photo{height:400px}
+  .movement-piece:nth-child(2) .movement-photo{height:290px}
+  .movement-piece:nth-child(3) .movement-photo{height:340px}
+  .plan-layout{gap:24px}
+  .week-grid{grid-template-columns:1fr 1fr}
+  .coach-image{min-height:550px}
+}
+@media(max-width:700px){
+  .container{width:calc(100% - 34px)}
+  .section-space{padding:85px 0}
+  .hero{min-height:100svh;min-height:740px}
+  .hero-content{padding:125px 0 95px}
+  .hero h1{font-size:clamp(72px,16vw,112px)}
+  .hero-overlay{
+    background:linear-gradient(90deg,rgba(9,12,10,.88),rgba(9,12,10,.54));
+  }
+  .hero-copy .stripe{width:25px}
+  .hero-copy p{font-size:14px}
+  .hero-actions{flex-direction:column}
+  .hero-actions .btn{width:100%}
+  .hero-bottom-inner span{display:none}
+  .ticker-set{font-size:25px}
+  .manifesto{padding:100px 0}
+  .manifesto-grid{grid-template-columns:1fr}
+  .manifesto-aside img{height:300px}
+  .manifesto h2{font-size:clamp(67px,13vw,102px)}
+  .manifesto-description{grid-template-columns:1fr}
+  .movement{padding:90px 0}
+  .movement-header{flex-direction:column;align-items:start}
+  .movement h2{font-size:clamp(67px,14vw,105px)}
+  .movement-grid{grid-template-columns:1fr;gap:45px}
+  .movement-piece:nth-child(2),
+  .movement-piece:nth-child(3){margin-top:0}
+  .movement-photo,
+  .movement-piece:nth-child(2) .movement-photo,
+  .movement-piece:nth-child(3) .movement-photo{height:390px}
+  .fullshot{min-height:540px}
+  .fullshot h2{font-size:clamp(73px,15vw,110px)}
+  .planner{padding:90px 0}
+  .planner-head,.plan-layout{grid-template-columns:1fr}
+  .planner-head{gap:20px}
+  .planner-tabs{display:grid;grid-template-columns:repeat(3,1fr)}
+  .planner-tab{min-width:0;font-size:21px;padding:18px 6px}
+  .plan-right{padding:18px}
+  .week-grid{gap:8px}
+  .week{min-height:130px;padding:11px}
+  .week strong{font-size:20px}
+  .coach{grid-template-columns:1fr}
+  .coach-image{min-height:430px;max-height:530px}
+  .coach-copy{padding:60px 25px}
+  .modes{padding:90px 0}
+  .modes-top{flex-direction:column;align-items:start}
+  .mode-row{grid-template-columns:35px 1fr 43px;gap:15px}
+  .mode-row p{grid-column:2;grid-row:2}
+  .mode-row a{grid-column:3;grid-row:1}
+  .contact{padding:100px 0}
+  .contact-grid{grid-template-columns:1fr;gap:45px}
+  .input-row{grid-template-columns:1fr;gap:0}
+  .footer-top{flex-direction:column}
+  .footer-bottom{flex-direction:column}
+  .footer-word{font-size:28vw}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<header class="header" id="header">
+  <div class="container nav">
+
+    <a class="logo" href="#inicio">
+      <span class="logo-mark">↗</span>
+      <strong>PULSO<span class="dot">.</span></strong>
+    </a>
+
+    <nav class="navlinks" id="navlinks" aria-label="Navegación">
+      <a href="#filosofia">Filosofía</a>
+      <a href="#entrenamiento">Entrenamiento</a>
+      <a href="#programa">Tu programa</a>
+      <a href="#modalidades">Modalidades</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <a class="nav-cta" href="#contacto">EMPIEZA AHORA ↗</a>
+
+    <button class="menu" id="menuBtn"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="navlinks">☰</button>
+
+  </div>
+</header>
+
+<!-- VIDEO HERO -->
+<section class="hero" id="inicio">
+
+  <video
+    class="hero-video"
+    id="heroVideo"
+    autoplay muted loop playsinline preload="metadata"
+    poster="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?auto=format&fit=crop&w=2000&q=85">
+    <source src="https://assets.mixkit.co/videos/44416/44416-720.mp4"
+      type="video/mp4">
+  </video>
+
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content">
+
+    <h1>
+      <span>NO ESPERES</span>
+      <span class="stroke">LAS GANAS.</span>
+      <span>ENTRENA CON</span>
+      <span class="orange">DIRECCIÓN.</span>
+    </h1>
+
+    <div class="hero-copy">
+      <span class="stripe"></span>
+      <p>
+        Entrenamiento personal diseñado para tu nivel,
+        tus objetivos y tu vida. Sin fórmulas mágicas.
+        Con método, movimiento y constancia.
+      </p>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#contacto" class="btn btn-orange">
+        EMPEZAR A ENTRENAR <span>↗</span>
+      </a>
+      <a href="#programa" class="btn btn-stroke">
+        CONOCE EL MÉTODO <span>↓</span>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="hero-bottom">
+    <div class="container hero-bottom-inner">
+      <span>PERSONAL COACHING / FUERZA / RENDIMIENTO / MOVILIDAD</span>
+      <a href="#filosofia">DESCUBRE PULSO ↓</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- MOVING STRIP -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="ticker-set">
+      MUÉVETE <i></i> CONSTRUYE <i></i> PROGRESA <i></i>
+      REPITE <i></i> TU RITMO <i></i>
+    </div>
+    <div class="ticker-set">
+      MUÉVETE <i></i> CONSTRUYE <i></i> PROGRESA <i></i>
+      REPITE <i></i> TU RITMO <i></i>
+    </div>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="manifesto" id="filosofia">
+
+  <div class="container manifesto-grid">
+
+    <div class="manifesto-aside reveal">
+
+      <span class="kicker" style="color:var(--orange)">
+        001 / EL PUNTO DE PARTIDA
+      </span>
+
+      <img
+        src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=850&q=85"
+        alt="Entrenamiento físico con pesas"
+        loading="lazy">
+
+    </div>
+
+    <div class="reveal">
+
+      <h2>
+        NO NECESITAS<br>
+        SER <em>ATLETA.</em><br>
+        NECESITAS<br>
+        EMPEZAR.
+      </h2>
+
+      <div class="manifesto-description">
+
+        <p>
+          Entrenar no se trata de competir con otros.
+          Se trata de construir una versión más capaz
+          de ti, desde donde estás hoy.
+        </p>
+
+        <p>
+          Adaptamos los ejercicios, la intensidad
+          y la frecuencia a tus capacidades y
+          disponibilidad. Avanzar con constancia
+          importa más que entrenar al límite.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- IMAGE MOSAIC -->
+<section class="movement" id="entrenamiento">
+
+  <div class="container">
+
+    <div class="movement-header">
+
+      <div class="reveal">
+        <span class="kicker">002 / ENTRENAMIENTO INTELIGENTE</span>
+        <h2>
+          ENTRENA <em>PARA</em><br>
+          LA VIDA REAL.
+        </h2>
+      </div>
+
+      <p class="reveal">
+        Diferentes capacidades. Un mismo objetivo:
+        desarrollar un cuerpo que pueda responder
+        mejor a los desafíos de cada día.
+      </p>
+
+    </div>
+
+    <div class="movement-grid">
+
+      <article class="movement-piece reveal">
+        <div class="movement-photo">
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1100&q=85"
+            alt="Atleta realizando un entrenamiento de fuerza"
+            loading="lazy">
+        </div>
+        <div class="movement-caption">
+          <h3>FUERZA</h3>
+          <span>01 / 03</span>
+        </div>
+      </article>
+
+      <article class="movement-piece reveal">
+        <div class="movement-photo">
+          <img
+            src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=850&q=85"
+            alt="Persona ejercitándose en un gimnasio"
+            loading="lazy">
+        </div>
+        <div class="movement-caption">
+          <h3>RESISTENCIA</h3>
+          <span>02 / 03</span>
+        </div>
+      </article>
+
+      <article class="movement-piece reveal">
+        <div class="movement-photo">
+          <img
+            src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1000&q=85"
+            alt="Entrenamiento de movilidad y flexibilidad"
+            loading="lazy">
+        </div>
+        <div class="movement-caption">
+          <h3>MOVILIDAD</h3>
+          <span>03 / 03</span>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- EDITORIAL IMPACT -->
+<section class="fullshot">
+
+  <img
+    src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1900&q=85"
+    alt="Equipamiento para entrenamiento deportivo"
+    loading="lazy">
+
+  <div class="container reveal">
+    <h2>
+      MÁS FUERTE.<br>
+      MÁS CAPAZ.<br>
+      <em>MÁS TÚ.</em>
+    </h2>
+
+    <p>
+      El mejor programa no es el más extremo.
+      Es aquel que puedes sostener, adaptar
+      y convertir en una parte real de tu vida.
+    </p>
+  </div>
+
+</section>
+
+<!-- INTERACTIVE PROGRAM -->
+<section class="planner" id="programa">
+
+  <div class="container">
+
+    <div class="planner-head">
+
+      <div class="reveal">
+        <div class="kicker" style="color:var(--orange)">
+          003 / MÉTODO PULSO
+        </div>
+        <h2>
+          CADA OBJETIVO.<br>
+          <em>SU PROPIO PLAN.</em>
+        </h2>
+      </div>
+
+      <p class="reveal">
+        Explora cómo podría cambiar una semana
+        de entrenamiento según el objetivo.
+        El programa definitivo se adapta tras una evaluación.
+      </p>
+
+    </div>
+
+    <div class="planner-tabs reveal"
+      aria-label="Elige un objetivo">
+
+      <button class="planner-tab" type="button"
+        data-goal="fuerza" aria-pressed="true">
+        FUERZA
+      </button>
+
+      <button class="planner-tab" type="button"
+        data-goal="energia" aria-pressed="false">
+        ENERGÍA
+      </button>
+
+      <button class="planner-tab" type="button"
+        data-goal="movilidad" aria-pressed="false">
+        MOVILIDAD
+      </button>
+
+    </div>
+
+    <div class="plan-layout">
+
+      <div class="plan-left reveal" aria-live="polite">
+
+        <span class="plan-index" id="planIndex">
+          PROGRAMA / 01
+        </span>
+
+        <h3 id="planTitle">
+          CONSTRUYE FUERZA.
+        </h3>
+
+        <p id="planDescription">
+          Sesiones orientadas a trabajar patrones
+          fundamentales de movimiento con
+          progresión adaptada.
+        </p>
+
+        <a href="#contacto" class="btn btn-orange"
+          style="margin-top:25px">
+          QUIERO ESTE ENFOQUE ↗
+        </a>
+
+      </div>
+
+      <div class="plan-right reveal">
+
+        <div class="plan-bar">
+          <strong>EJEMPLO DE MICROPLAN</strong>
+          <span>SEMANA / 01</span>
+        </div>
+
+        <div class="week-grid" id="weekGrid">
+
+          <div class="week">
+            <small>LUN</small>
+            <strong>FUERZA A</strong>
+            <span>Tren inferior</span>
+          </div>
+
+          <div class="week">
+            <small>MAR</small>
+            <strong>DESCANSO</strong>
+            <span>Recuperación</span>
+          </div>
+
+          <div class="week">
+            <small>JUE</small>
+            <strong>FUERZA B</strong>
+            <span>Tren superior</span>
+          </div>
+
+          <div class="week">
+            <small>SÁB</small>
+            <strong>GLOBAL</strong>
+            <span>Cuerpo completo</span>
+          </div>
+
+        </div>
+
+        <div class="plan-foot">
+          Vista ilustrativa, no prescripción individual.
+          La frecuencia y los ejercicios se ajustan
+          al nivel, objetivos y necesidades de la persona.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TRAINER SECTION -->
+<section class="coach">
+
+  <div class="coach-image">
+    <img
+      src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1200&q=85"
+      alt="Entrenamiento individual en gimnasio"
+      loading="lazy">
+  </div>
+
+  <div class="coach-copy reveal">
+
+    <span class="kicker">004 / LA FILOSOFÍA DEL ENTRENADOR</span>
+
+    <h2>
+      MENOS<br>
+      EXCUSAS.<br>
+      MÁS<br>
+      MÉTODO.
+    </h2>
+
+    <p>
+      El entrenamiento personal consiste en mucho
+      más que elegir ejercicios. Implica escuchar,
+      observar, enseñar técnica y ajustar el plan
+      conforme la persona progresa.
+    </p>
+
+    <div class="coach-rules">
+      <div>
+        EVALUAR ANTES DE EXIGIR
+        <span>01</span>
+      </div>
+      <div>
+        TÉCNICA ANTES QUE INTENSIDAD
+        <span>02</span>
+      </div>
+      <div>
+        CONSTANCIA ANTES QUE PERFECCIÓN
+        <span>03</span>
+      </div>
+    </div>
+
+    <a class="btn btn-light" href="#contacto">
+      CONOCER EL PROCESO ↗
+    </a>
+
+  </div>
+
+</section>
+
+<!-- MODALITIES -->
+<section class="modes" id="modalidades">
+
+  <div class="container">
+
+    <div class="modes-top">
+
+      <div class="reveal">
+        <div class="kicker">005 / FORMAS DE ENTRENAR</div>
+        <h2>
+          ELIGE TU<br>
+          TERRENO.
+        </h2>
+      </div>
+
+      <p class="reveal">
+        Tu entrenamiento debería encajar
+        en tu realidad, no obligarte a
+        reorganizar tu vida por completo.
+      </p>
+
+    </div>
+
+    <div class="mode-list">
+
+      <article class="mode-row reveal">
+        <small>01</small>
+        <h3>PERSONAL 1:1</h3>
+        <p>Sesiones individuales con supervisión, correcciones técnicas y acompañamiento directo.</p>
+        <a href="#contacto" aria-label="Consultar entrenamiento personal">↗</a>
+      </article>
+
+      <article class="mode-row reveal">
+        <small>02</small>
+        <h3>ENTRENAMIENTO ONLINE</h3>
+        <p>Planificación y seguimiento remoto para entrenar con mayor flexibilidad.</p>
+        <a href="#contacto" aria-label="Consultar entrenamiento online">↗</a>
+      </article>
+
+      <article class="mode-row reveal">
+        <small>03</small>
+        <h3>PLAN HÍBRIDO</h3>
+        <p>Combinación de sesiones supervisadas y trabajo autónomo planificado.</p>
+        <a href="#contacto" aria-label="Consultar entrenamiento híbrido">↗</a>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+
+  <div class="container contact-grid">
+
+    <div class="contact-copy reveal">
+
+      <div class="kicker" style="color:var(--orange)">
+        006 / HORA DE EMPEZAR
+      </div>
+
+      <h2>
+        TU PRIMER<br>
+        PASO <em>ES</em><br>
+        HOY.
+      </h2>
+
+      <p>
+        Cuéntanos tu objetivo y qué modalidad
+        te interesa. Coordinaremos una primera
+        conversación para conocer tu situación.
+      </p>
+
+      <div class="contact-terms">
+        <div>ENTRENAMIENTO PERSONALIZADO</div>
+        <div>PRESENCIAL / ONLINE / HÍBRIDO</div>
+        <div>CHILE — DEMOSTRACIÓN DE PORTAFOLIO</div>
+      </div>
+
+    </div>
+
+    <form id="contactForm" class="contact-form reveal">
+
+      <h3>EMPIEZA TU PROCESO.</h3>
+
+      <div class="input-row">
+
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text"
+            placeholder="Tu nombre" required>
+        </div>
+
+        <div class="field">
+          <label for="telefono">WhatsApp</label>
+          <input id="telefono" type="tel"
+            placeholder="+56 9..." required>
+        </div>
+
+      </div>
+
+      <div class="input-row">
+
+        <div class="field">
+          <label for="objetivo">Tu objetivo</label>
+          <select id="objetivo">
+            <option>Ganar fuerza</option>
+            <option>Mejorar resistencia</option>
+            <option>Mejorar movilidad</option>
+            <option>Crear el hábito de entrenar</option>
+            <option>Necesito orientación</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="modalidad">Modalidad</label>
+          <select id="modalidad">
+            <option>Personal 1:1</option>
+            <option>Online</option>
+            <option>Híbrida</option>
+            <option>Quiero orientación</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="field">
+        <label for="mensaje">Mensaje opcional</label>
+        <textarea id="mensaje"
+          placeholder="Cuéntanos qué te gustaría conseguir..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-orange">
+        CONSULTAR POR WHATSAPP ↗
+      </button>
+
+      <p class="form-hint">
+        El formulario abre WhatsApp con un mensaje preparado.
+        No compartas aquí información médica o sensible.
+      </p>
+
+    </form>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <div class="container">
+
+    <div class="footer-top">
+
+      <div>
+        <a href="#inicio" class="logo">
+          <span class="logo-mark">↗</span>
+          <strong>PULSO<span class="dot">.</span></strong>
+        </a>
+        <p>
+          Personal training, movimiento y progreso
+          adaptado a la vida real.
+        </p>
+      </div>
+
+      <nav class="footer-links" aria-label="Enlaces del pie">
+        <a href="#filosofia">Filosofía</a>
+        <a href="#entrenamiento">Entrenamiento</a>
+        <a href="#programa">Programa</a>
+        <a href="#modalidades">Modalidades</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+    </div>
+
+    <div class="footer-word" aria-hidden="true">
+      PULSO.
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 PULSO. — MARCA DEMOSTRATIVA</span>
+      <span>ENTRENA CON DIRECCIÓN.</span>
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+/* CONFIGURACIÓN DE CONTACTO */
+const whatsapp = "56912345678";
+
+/* NAV */
+const header = document.getElementById("header");
+const menuBtn = document.getElementById("menuBtn");
+
+function closeMenu(){
+  header.classList.remove("open");
+  menuBtn.textContent = "☰";
+  menuBtn.setAttribute("aria-expanded","false");
+}
+
+window.addEventListener("scroll",()=>{
+  header.classList.toggle("scrolled",scrollY>30);
+},{passive:true});
+
+menuBtn.addEventListener("click",()=>{
+  const isOpen = header.classList.toggle("open");
+  menuBtn.textContent = isOpen ? "×" : "☰";
+  menuBtn.setAttribute("aria-expanded",String(isOpen));
+});
+
+document.querySelectorAll(".navlinks a").forEach(a=>{
+  a.addEventListener("click",closeMenu);
+});
+
+/* SCROLL REVEAL */
+const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
+if("IntersectionObserver" in window && !reduced.matches){
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.08});
+
+  document.querySelectorAll(".reveal").forEach(el=>{
+    observer.observe(el);
+  });
+}else{
+  document.querySelectorAll(".reveal").forEach(el=>{
+    el.classList.add("visible");
+  });
+}
+
+/* VIDEO */
+const heroVideo = document.getElementById("heroVideo");
+const saveData = navigator.connection?.saveData === true;
+
+if(reduced.matches || saveData){
+  heroVideo.pause();
+  heroVideo.removeAttribute("autoplay");
+  heroVideo.querySelectorAll("source").forEach(s=>s.remove());
+  heroVideo.load();
+}else{
+  heroVideo.play().catch(()=>{});
+}
+
+/* INTERACTIVE PROGRAM EXAMPLES */
+const programs = {
+  fuerza:{
+    index:"PROGRAMA / 01",
+    title:"CONSTRUYE FUERZA.",
+    description:"Ejemplo de sesiones centradas en patrones fundamentales de movimiento, técnica y progresión gradual.",
+    weeks:[
+      ["LUN","FUERZA A","Tren inferior"],
+      ["MAR","DESCANSO","Recuperación"],
+      ["JUE","FUERZA B","Tren superior"],
+      ["SÁB","GLOBAL","Cuerpo completo"]
+    ]
+  },
+  energia:{
+    index:"PROGRAMA / 02",
+    title:"GANA RESISTENCIA.",
+    description:"Ejemplo de una combinación de actividad aeróbica, fuerza y recuperación para mejorar la capacidad física.",
+    weeks:[
+      ["LUN","CARDIO","Moderado"],
+      ["MIÉ","FUERZA","General"],
+      ["VIE","INTERVALOS","Adaptados"],
+      ["DOM","SUAVE","Recuperación"]
+    ]
+  },
+  movilidad:{
+    index:"PROGRAMA / 03",
+    title:"MUÉVETE MEJOR.",
+    description:"Ejemplo de trabajo de movilidad, control corporal y fuerza adaptada a los rangos de movimiento.",
+    weeks:[
+      ["LUN","MOVILIDAD","Cadera"],
+      ["MAR","CONTROL","Tronco"],
+      ["JUE","FUERZA","Adaptada"],
+      ["SÁB","MOVIMIENTO","Global"]
+    ]
+  }
+};
+
+const weekGrid=document.getElementById("weekGrid");
+const planIndex=document.getElementById("planIndex");
+const planTitle=document.getElementById("planTitle");
+const planDescription=document.getElementById("planDescription");
+
+function selectProgram(goal){
+  const data=programs[goal];
+  if(!data)return;
+
+  document.querySelectorAll(".planner-tab").forEach(btn=>{
+    btn.setAttribute("aria-pressed",
+      String(btn.dataset.goal===goal));
+  });
+
+  planIndex.textContent=data.index;
+  planTitle.textContent=data.title;
+  planDescription.textContent=data.description;
+
+  weekGrid.replaceChildren();
+
+  data.weeks.forEach(([day,title,detail])=>{
+    const cell=document.createElement("div");
+    cell.className="week";
+
+    const small=document.createElement("small");
+    small.textContent=day;
+
+    const strong=document.createElement("strong");
+    strong.textContent=title;
+
+    const span=document.createElement("span");
+    span.textContent=detail;
+
+    cell.append(small,strong,span);
+    weekGrid.appendChild(cell);
+  });
+}
+
+document.querySelectorAll(".planner-tab").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    selectProgram(btn.dataset.goal);
+  });
+});
+
+/* WHATSAPP */
+document.getElementById("contactForm")
+  .addEventListener("submit",event=>{
+    event.preventDefault();
+
+    const value=id=>document.getElementById(id).value.trim();
+
+    const texto=[
+      "Hola PULSO, quiero consultar por entrenamiento personal.",
+      "",
+      "Nombre: "+value("nombre"),
+      "Teléfono: "+value("telefono"),
+      "Objetivo: "+value("objetivo"),
+      "Modalidad: "+value("modalidad"),
+      "Comentario: "+(value("mensaje")||"Sin comentario")
+    ].join("\n");
+
+    window.open(
+      "https://wa.me/"+whatsapp+
+      "?text="+encodeURIComponent(texto),
+      "_blank",
+      "noopener,noreferrer"
+    );
+  });
+</script>
+
+</body>
+</html>
